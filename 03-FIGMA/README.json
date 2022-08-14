@@ -1,0 +1,12 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Figma",
+  "permalink": "/figma/",
+  "feedbackID": "03-FIGMA",
+  "quizzID" : "606e31b2656c8d23c2e60ecb",
+  "homeworkUrl": "https://github.com/soyHenry/FT-M3/tree/master/03-WebServer/homework/Beatles",
+  "eleventyNavigation": {
+    "key": "Figma",
+    "order": 3
+  }
+}
