@@ -16,3 +16,6 @@ temas más que no van de estructuras de datos, pero si de cuestiones que nos
 van a facilitar entenderlas y trabajarlas, llámense _buenas prácticas_ y 
 _metodologías de depuración_. 
 
+## Buenas prácticas (opcional)
+
+
