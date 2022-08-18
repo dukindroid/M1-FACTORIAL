@@ -1,12 +1,12 @@
 {
   "layout": "lesson",
-  "lessonTitle": "Henry Compiler",
-  "permalink": "/henrycompiler/",
-  "feedbackID": "02-HENRYCOMPILER",
+  "lessonTitle": "cPanel y MySQL",
+  "permalink": "/CPANELMYSQL/",
+  "feedbackID": "02-CPANELMYSQL",
   "quizzID" : "6057d0a5656c8d23c2e60e3e",
   "homeworkUrl": "https://github.com/soyHenry/FT-M3/tree/master/01-ASTS/homework",
   "eleventyNavigation": {
-    "key": "HenryCompiler",
+    "key": "cPanel y MySQL",
     "order": 2
   }
 }
