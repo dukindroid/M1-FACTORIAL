@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { crud } = require("express-crud-router");
-// const { sequelizeV6Crud } = require("express-crud-router-sequelize-v6-connector");
 const app = express();
 const sequelize = require('./sequelize');
+const { crud } = require("express-crud-router");
 const { Videogame, Genre } = sequelize.models;
 
 
