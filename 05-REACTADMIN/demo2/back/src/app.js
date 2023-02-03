@@ -5,7 +5,10 @@ const app = express();
 const sequelize = require('./sequelize');
 const { Pokemon, Type } = sequelize.models;
 const {crud} = require('express-crud-router')
-
+const connector = require("express-crud-router-sequelize-v6-connector");
+// console.log(typeof )
+console.dir(connector.default)
+const sequelizeCrud = connector.default
 async function dbTest() {
 	console.log('Ahora busquemos un registro a ver si es cierto...')
 	console.log(await Pokemon.findAll())
@@ -17,7 +20,7 @@ async function chequearConnSequelize() {
 	try {
 		await sequelize.authenticate();
 		console.log('Parece que si! 😎');
-		dbTest();
+		// dbTest();
 	} catch (error) {
 		console.log('Parece que no... 😣 porque: ');
 		console.log(error.message);
@@ -36,17 +39,26 @@ const init = async () => {
 	app.get('/', (req, res) => {
 		res.send(`💩 -- Funciona el back!`);
 	});
+	
+	app.use((req, res, next) => {
+		// res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+		res.header('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count'); // update to match the domain you will make the request from  ', '*'); 
+		res.header('Access-Control-Allow-Credentials', 'true');
+		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Content-Range');
+		res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+		next();
+	});
 
-	app.use(
-		crud('/type', {
-			getList: ({ filter, limit, offset, order }) =>
-				Type.findAndCountAll({ limit, offset, order, where: filter }),
-			getOne: (id) => Type.findByPk(id),
-			create: (body) => Type.create(body),
-			update: (id, body) => Type.update(body, { where: { id } }),
-			destroy: (id) => Type.destroy({ where: { id } }),
-		})
-	)
+	app.use(crud("/admin/types", sequelizeCrud(Type)));
+	// app.use(
+	// 	crud('/admin/types', {
+	// 		getList: ({ filter, limit, offset, order }) => Type.findAndCountAll({ limit, offset, order, where: filter }),
+	// 		getOne: (id) => Type.findByPk(id),
+	// 		create: (body) => Type.create(body),
+	// 		update: (id, body) => Type.update(body, { where: { id } }),
+	// 		destroy: (id) => Type.destroy({ where: { id } }),
+	// 	})
+	// )
 
 	app.listen(PORT, () => {
 		console.log(`Express server started on port ${PORT}.`);
