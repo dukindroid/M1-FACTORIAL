@@ -1,0 +1,12 @@
+{
+  "layout": "lesson",
+  "lessonTitle": "Henry Compiler",
+  "permalink": "/henrycompiler/",
+  "feedbackID": "02-HENRYCOMPILER",
+  "quizzID" : "6057d0a5656c8d23c2e60e3e",
+  "homeworkUrl": "https://github.com/soyHenry/FT-M3/tree/master/01-ASTS/homework",
+  "eleventyNavigation": {
+    "key": "HenryCompiler",
+    "order": 2
+  }
+}
