@@ -4,7 +4,7 @@ import React from 'react'
 export const TypesList = () => {
   return (
     <List >
-      <Datagrid rowClick="edit">
+      <Datagrid>
         <TextField source="id" />
         <TextField source="name" />
       </Datagrid>

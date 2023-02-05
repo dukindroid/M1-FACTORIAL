@@ -1,25 +1,28 @@
 // ./src/App.js
-import * as React from "react";
-import { Admin, Resource } from 'react-admin';
-import { fetchUtils } from 'ra-core';
+import { fetchUtils, Admin, Resource } from 'react-admin';
 import simpleRestProvider from 'ra-data-simple-rest';
 import { TypesList } from './Types';
+import { PokemonsList } from './Pokemons';
 
 const httpClient = (url, options = {}) => {
     if (!options.headers) {
         options.headers = new Headers({ Accept: 'application/json' });
     }
+
     // add your own headers here
-    options.headers.set('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count');
+    console.dir(JSON.stringify((options.headers)))
     return fetchUtils.fetchJson(url, options);
 };
-const dataProvider = simpleRestProvider('http://localhost:3333/admin', httpClient);
+const dataProvider = simpleRestProvider('http://localhost:3333', httpClient, 'X-Total-Count');
 
-// const dataProvider = simpleRestProvider('http://localhost:3333', fetchUtils.fetchJson, 'X-Total-Count');
+// const dataProvider = simpleRestProvider();
 
-const App = () => (
-    <Admin dataProvider={simpleRestProvider(dataProvider)}>
-        <Resource name="types" list={TypesList} />
-    </Admin>
-);
+function App() {
+    return (
+        <Admin dataProvider={dataProvider}>
+            <Resource name="type" list={TypesList} />
+            <Resource name="pokemon" list={PokemonsList} />
+        </Admin>
+    )
+};
 export default App;

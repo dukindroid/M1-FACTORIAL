@@ -1,3 +1,4 @@
+#
 # React Admin
 
 ## Introducción
@@ -25,7 +26,7 @@ Sin ánimos de ofender a nadie, sino con la finalidad de la más sincera crític
 El mismo refactor anterior, pero con la tarea Desintegradora de Rick y Morty. No sé, piénsalo. 
 
 ![Aaaah maaai gaaad!](/_src/assets/05-REACTADMIN/image11.png)
-
+#
 ## Back-end 
 
 ### Introducción
@@ -241,9 +242,9 @@ En el peor de los casos, si hasta aquí no se vé los quebraderos de cabeza que 
 Otro punto importante a tomar en cuenta aquí, es que al construir la API original establecimos mas que algún encabezado de `Access-Control-Allow-Origin` en el mejor de los casos, cuestión que con React Admin no es suficiente, ya que también por buenas prácticas, este objeto CRUD también se encargará de agregar los encabezados necesarios para que el acceso a nuestra data sea seguro y fiable.
 
 Y si ninguna de las dos anteriores razones te convence que no es "repetir" nuestro CRUD, sino "exponerlo" como interface para darle mayor funcionalidad, entonces vas a tener que bancarme un poquito acá. Espero que al final de este pequeño tutorial todo tenga mayor sentido. 
-
+#
 ## Front-end
-
+#
 ### Introducción
 
 Posiblemente nos tome horas, días, meses, AÑOS! incluso, terminar este front, así que vayamos despacio y estructurado. Lo que queremos aprender es a usar el React-Admin, así que caminemos por ese lado. Dejemos un rato en paz la carpeta de `./back` y vamos a hacer nuestro `npm init -y` en la carpeta `front`
@@ -273,7 +274,7 @@ export default App;
 ```
 
 Y de qué va esta `{TypeList}`? Es un ave? Es un avión? Es una prop? Es un componente? Pues fíjate que es un poco de todo esto. Vamos para allá:
-
+#
 ```javascript
 // ./src/Types/index.js 
 import { Datagrid, List, TextField } from 'react-admin';
@@ -296,6 +297,9 @@ const Types = () => <TypesList />
 
 export default Types
 ```
+#
+# Corte informativo!!!
+
 
 ## Repo
 

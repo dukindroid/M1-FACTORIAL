@@ -38,11 +38,13 @@ module.exports = (sequelize) => {
     },
     weight:{
       type:DataTypes.INTEGER,
-      validate: { min: 1, max: 200 }
+      validate: { min: 1, max: 2000 }
     },
     img:{
       type:DataTypes.STRING,
-    
+    },
+    img2:{
+      type:DataTypes.STRING,
     },
     itsCreated: {
       type: DataTypes.BOOLEAN,

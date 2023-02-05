@@ -4,19 +4,22 @@ const bodyParser = require('body-parser');
 const app = express();
 const sequelize = require('./sequelize');
 const { Pokemon, Type } = sequelize.models;
-const {crud} = require('express-crud-router')
+const { crud } = require('express-crud-router')
 const connector = require("express-crud-router-sequelize-v6-connector");
-// console.log(typeof )
-console.dir(connector.default)
 const sequelizeCrud = connector.default
+const PORT = 3333;
+
+// pruebita de conexión rapidísima`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`
+
 async function dbTest() {
 	console.log('Ahora busquemos un registro a ver si es cierto...')
 	console.log(await Pokemon.findAll())
 	console.log(await Type.findAll())
 }
 
-async function chequearConnSequelize() {
-	console.log(`A ver si tengo conexión...`);
+async function chequearConnSequelize() {	
+	const { DB_NAME,	DB_USER,	DB_PASSWORD,	DB_HOST } = process.env;
+	console.log(`A ver si tengo conexión a ${DB_NAME},	${DB_USER},	${DB_PASSWORD},	${DB_HOST} `);
 	try {
 		await sequelize.authenticate();
 		console.log('Parece que si! 😎');
@@ -28,7 +31,6 @@ async function chequearConnSequelize() {
 	}
 }
 
-const PORT = 3333;
 const init = async () => {
 	await chequearConnSequelize();
 
@@ -40,16 +42,21 @@ const init = async () => {
 		res.send(`💩 -- Funciona el back!`);
 	});
 	
+	app.get('/seed', (res) => {
+		res.send('Cargando pokemons iniciales... espera un poco y accesa nuevamente.')
+	})  
+
+	// Cargamos el CRUD mágico
+	app.use(crud("/type", sequelizeCrud(Type)));
+	
 	app.use((req, res, next) => {
-		// res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
-		res.header('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count'); // update to match the domain you will make the request from  ', '*'); 
+		res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+		res.header('Access-Control-Expose-Headers', 'X-Total-Count'); // update to match the domain you will make the request from  ', '*'); 
 		res.header('Access-Control-Allow-Credentials', 'true');
 		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Content-Range');
 		res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
 		next();
 	});
-
-	app.use(crud("/admin/types", sequelizeCrud(Type)));
 	// app.use(
 	// 	crud('/admin/types', {
 	// 		getList: ({ filter, limit, offset, order }) => Type.findAndCountAll({ limit, offset, order, where: filter }),
