@@ -3,8 +3,8 @@ const { applyExtraSetup } = require('./extra-setup');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
-  dialect: 'mysql',
-  logging: false
+  dialect: 'postgres',
+  // logging: false
 })
 
 const modelDefiners = [
@@ -14,6 +14,7 @@ const modelDefiners = [
 
 // Definimos los modelos a partir de su nombre de archivo
 for (const modelDefiner of modelDefiners) {
+  // console.log(`Definiendo modelo ${modelDefiner}`)
 	modelDefiner(sequelize);
 }
 

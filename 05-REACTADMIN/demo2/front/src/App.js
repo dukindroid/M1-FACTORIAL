@@ -10,7 +10,7 @@ const httpClient = (url, options = {}) => {
     }
 
     // add your own headers here
-    console.dir(JSON.stringify((options.headers)))
+    // console.dir(JSON.stringify((options.headers)))
     return fetchUtils.fetchJson(url, options);
 };
 const dataProvider = simpleRestProvider('http://localhost:3333', httpClient, 'X-Total-Count');
@@ -20,8 +20,8 @@ const dataProvider = simpleRestProvider('http://localhost:3333', httpClient, 'X-
 function App() {
     return (
         <Admin dataProvider={dataProvider}>
-            <Resource name="type" list={TypesList} />
-            <Resource name="pokemon" list={PokemonsList} />
+            <Resource name="types" list={TypesList} />
+            <Resource name="pokemons" list={PokemonsList} />
         </Admin>
     )
 };
